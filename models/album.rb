@@ -32,4 +32,25 @@ class Album
     return artist
   end
 
+  def self.delete_all()
+    sql = "DELETE FROM albums"
+    SqlRunner.run(sql)
+  end
+
+  def update( options )
+    sql = "
+    UPDATE albums SET (
+      name,
+      genre,
+      artist_id
+    ) =
+    (
+      $1,$2,$3
+    )
+    WHERE id = $4"
+    values = [@name, @genre, @id, @artist_id]
+    update = SqlRunner.run(sql, values)
+    return update.map { |album| Album.new(album)  }
+  end
+
 end
