@@ -27,8 +27,9 @@ album2.save()
 # p Artist.display_albums_by_artist(7)
 # p Album.artist(1)
 # p Artist.all()
-# p Album.all()
-p album2.update(album1)
+album2.name = "BLARGH"
+album2.update()
+ p Album.all()
 
 
 binding.pry
